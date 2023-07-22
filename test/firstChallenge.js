@@ -1,20 +1,18 @@
-const { Builder, Capabilities } = require("selenium-webdriver");
+const { Builder } = require("selenium-webdriver");
 const config = require("../config");
 const MainPage = require("../pages/MainPage");
 const BusinessPage = require("../pages/BusinessPage");
 const PersonalPage = require("../pages/PersonalPage");
-const chrome = require('selenium-webdriver/chrome');
 
 let driver;
 let mainPage;
 
 beforeEach(async function () {
-  const capabilities = Capabilities.chrome();
-  capabilities.set('window-size', 1920, 1080);
   driver = await new Builder()
-    .withCapabilities(capabilities)
     .forBrowser("chrome")
     .build()
+
+  driver.manage().window().maximize();
 
   mainPage = new MainPage(driver);
   await mainPage.open();
