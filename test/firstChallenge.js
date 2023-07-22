@@ -1,14 +1,21 @@
-const { Builder } = require("selenium-webdriver");
+const { Builder, Capabilities } = require("selenium-webdriver");
 const config = require("../config");
 const MainPage = require("../pages/MainPage");
 const BusinessPage = require("../pages/BusinessPage");
 const PersonalPage = require("../pages/PersonalPage");
+const chrome = require('selenium-webdriver/chrome');
 
 let driver;
 let mainPage;
 
 beforeEach(async function () {
-  driver = await new Builder().forBrowser("chrome").build();
+  const capabilities = Capabilities.chrome();
+  capabilities.set('window-size', 1920, 1080);
+  driver = await new Builder()
+    .withCapabilities(capabilities)
+    .forBrowser("chrome")
+    .build()
+
   mainPage = new MainPage(driver);
   await mainPage.open();
 });
@@ -43,5 +50,5 @@ describe("checking elements on the main page", function () {
     await mainPage.findElementInLogInList(config.mainPage.header.manageMySubscriptionText);
     await mainPage.findElementInLogInList(config.mainPage.header.accessBusinessAdminPanelText);
   })
-  
+
 });
