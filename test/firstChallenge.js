@@ -1,4 +1,4 @@
-const { Builder, By } = require("selenium-webdriver");
+const { Builder } = require("selenium-webdriver");
 const config = require("../config");
 const MainPage = require("../pages/MainPage")
 const BusinessPage = require("../pages/BusinessPage")
@@ -17,32 +17,31 @@ afterEach(async function () {
   await driver.quit();
 });
 
-describe('tests for the first personal and business buttons', function () {
-  it('check the Business button', async function () {
+describe('cheking redirection from the main page', function () {
+  it('the Business button leads to the business page', async function () {
 
-    const businessPage = new BusinessPage(driver)
+    const businessPage = new BusinessPage(driver);
 
-    await mainPage.clickButton(config.xpathForFirstBusinessButton);
+    await mainPage.clickButton(config.mainPage.heroHomepage.xpathBusinessButton);
     await businessPage.checkOpeningBusinessPage();
   });
 
-  it('check the Personal button', async function () {
+  it('the Personal button leads to the personal page', async function () {
 
-    const personalPage = new PersonalPage(driver)
+    const personalPage = new PersonalPage(driver);
 
-    await mainPage.clickButton(config.xpathForFirstPersonalButton);
+    await mainPage.clickButton(config.mainPage.heroHomepage.xpathPersonalButton);
     await personalPage.checkOpeningPersonalPage();
   });
 });
 
-describe('tests for the login list', function () {
-  it('ckeck elements in the Log in list', async function () {
+describe('checking elements on the main page', function () {
+  it('the Log in list shows items', async function () {
 
-    await mainPage.openLoginList()
-    await mainPage.findElementInLogInList(config.accessMyPasswordsText)
-    await mainPage.findElementInLogInList(config.manageMySubscriptionText)
-    await mainPage.findElementInLogInList(config.accessBusinessAdminPanelText)
-
+    await mainPage.openLoginList();
+    await mainPage.findElementInLogInList(config.mainPage.header.accessMyPasswordsText);
+    await mainPage.findElementInLogInList(config.mainPage.header.manageMySubscriptionText);
+    await mainPage.findElementInLogInList(config.mainPage.header.accessBusinessAdminPanelText);
   })
-
+  
 });

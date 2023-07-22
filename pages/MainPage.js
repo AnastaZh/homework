@@ -1,4 +1,4 @@
-const { By, Actions } = require("selenium-webdriver");
+const { By } = require("selenium-webdriver");
 const config = require("../config");
 const assert = require("assert");
 
@@ -8,14 +8,14 @@ class MainPage {
     }
 
     async open() {
-        await this.driver.get(config.baseUrl);
+        await this.driver.get(config.mainPage.baseUrl);
     }
 
     async clickButton(pathForButton) {
-        const businessButton = await this.driver.findElement(By.xpath(pathForButton));
-        const htmlCode = await businessButton.getAttribute('outerHTML');
+        const Button = await this.driver.findElement(By.xpath(pathForButton));
+        const htmlCode = await Button.getAttribute('outerHTML');
         console.log('Button was found, htmlCode:', htmlCode);
-        businessButton.click();
+        Button.click();
     }
 
     async openLoginList() {
@@ -36,7 +36,7 @@ class MainPage {
 
         //logging info about the element that was found
         const htmlCode = await elementToFind.getAttribute('outerHTML');
-        console.log("Element that was found:", htmlCode)
+        console.log("Element that was found:", htmlCode);
     }
 }
 
