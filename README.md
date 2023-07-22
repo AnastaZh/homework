@@ -9,10 +9,10 @@ Before running tests, please make sure you have the following:
 3. Add the directory containing the ChromeDriver executable to your system's PATH environment variable. To do this, follow these steps:
 
 - For macOS and Linux:
-     1. echo '/path/to/chromedriver_directory' | sudo tee -a /etc/paths
+     echo '/path/to/chromedriver_directory' | sudo tee -a /etc/paths
 
 - For Windows:
-     1. setx PATH "%PATH%;C:\path\to\chromedriver_directory"
+     setx PATH "%PATH%;C:\path\to\chromedriver_directory"
 
 ## Installation and launch 
 
