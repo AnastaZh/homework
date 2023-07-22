@@ -13,8 +13,8 @@ class MainPage {
 
     async clickButton(pathForButton) {
         const Button = await this.driver.findElement(By.xpath(pathForButton));
-        const htmlCode = await Button.getAttribute('outerHTML');
-        console.log('Button was found, htmlCode:', htmlCode);
+        const htmlCode = await Button.getAttribute("outerHTML");
+        console.log("Button was found, htmlCode:", htmlCode);
         Button.click();
     }
 
@@ -35,7 +35,7 @@ class MainPage {
         assert.ok(elementToFind, `The ${textForElement} element was not found`);
 
         //logging info about the element that was found
-        const htmlCode = await elementToFind.getAttribute('outerHTML');
+        const htmlCode = await elementToFind.getAttribute("outerHTML");
         console.log("Element that was found:", htmlCode);
     }
 }
